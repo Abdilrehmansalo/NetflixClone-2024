@@ -3,6 +3,7 @@ import "./row.css";
 import axios from "../../../utilities/axios";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovie] = useState([]);
@@ -47,27 +48,7 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
     },
   };
 
-  return (
-    <div className="row">
-      <h1>{title}</h1>
-      <div className="row__posters">
-        {movies?.map((movie, index) => (
-          <img
-            onClick={() => handleClick(movie)}
-            key={index}
-            src={`${base_url}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-          />
-        ))}
-      </div>
-      <div style={{ padding: "40px" }}>
-        {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
-      </div>
-    </div>
-  );
+ 
 };
 
 export default Row;
